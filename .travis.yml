@@ -13,4 +13,4 @@ deploy:
   github-token: $GH_TOKEN
   on:
     branch: master
-  local-dir: public
+  local-dir: dist
