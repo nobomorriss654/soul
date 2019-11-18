@@ -4,7 +4,7 @@ const connect = require('gulp-connect');
 const del = require('del');
 const sass = require('gulp-sass');
 sass.compiler = require('node-sass');
-const minifyCSS = require('gulp-minify-css');
+const cleanCss = require('gulp-clean-css');
 const autoprefixer = require('gulp-autoprefixer');
 const cssver = require('gulp-make-css-url-version');
 const revAppend = require('gulp-rev-append');
@@ -39,7 +39,7 @@ gulp.task('build:css', function () {
   return gulp.src(['src/assets/**/*.css', 'src/assets/**/*.scss', 'src/assets/**/*.sass'])
     .pipe(sass().on('error', sass.logError))
     .pipe(cssver())
-    .pipe(minifyCSS())
+    .pipe(cleanCss())
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
     .pipe(gulp.dest('dist/assets'))
     .pipe(connect.reload())
