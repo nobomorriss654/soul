@@ -30,9 +30,14 @@ gulp.task('build:js', function () {
     .pipe(gulp.dest('dist/assets/js'))
     .pipe(connect.reload())
 });
-gulp.task('build:js-cp', function () {
+gulp.task('build:cp-js', function () {
   return gulp.src('src/assets/js/**/*.min.js')
     .pipe(gulp.dest('dist/assets/js'))
+    .pipe(connect.reload())
+});
+gulp.task('build:cp-cname', function () {
+  return gulp.src('src/CNAME')
+    .pipe(gulp.dest('dist/'))
     .pipe(connect.reload())
 });
 gulp.task('build:css', function () {
@@ -64,6 +69,6 @@ gulp.task('dev-server', function () {
 });
 gulp.task('clean', () => del('dist'))
 
-gulp.task('build', gulp.series('clean', gulp.parallel('build:css', 'build:js', 'build:js-cp', 'build:img'), 'build:html'))
+gulp.task('build', gulp.series('clean', gulp.parallel('build:css', 'build:js', 'build:cp-js', 'build:cp-cname', 'build:img'), 'build:html'))
 
 gulp.task('dev', gulp.series('build', 'dev-server'))

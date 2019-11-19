@@ -1,5 +1,5 @@
-sudo: false
 language: node_js
+os: linux
 node_js:
   - 10
 cache: npm
@@ -8,11 +8,13 @@ branches:
     - master
 script:
   - npm run build
+
 deploy:
+  edge: true
   provider: pages
-  skip_cleanup: true
-  keep_history: true
-  github-token: $GH_TOKEN
+  cleanup: false
+  token: $GITHUB_TOKEN
+  keep_history: false
+  local_dir: dist
   on:
     branch: master
-  local-dir: dist
